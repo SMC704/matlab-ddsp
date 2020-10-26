@@ -1,7 +1,7 @@
 %% Test getMagnitudes function
 
 % % Test data ------------------ %
-[audio, fs] = audioread("Snare.wav");
+[audio, fs] = audioread("test/Snare.wav");
 audio = audio(:,1);
 % % ---------------------------- %
 

@@ -11,4 +11,5 @@ function magnitudes = getMagnitudes(audio, window_size)
     for n = 1:window_size:desired_length
         magnitudes = [magnitudes abs(fft(audio_padded(n:n+window_size-1)))];
     end
+    magnitudes = magnitudes';
 end
