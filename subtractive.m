@@ -1,10 +1,14 @@
 function [out] = subtractive(n_samples, window_size, magnitudes)
     % magnitudes: row = frames, column = freq responses
+    
+    % generate white noise
     signal = rand(1, n_samples) * 2 - 1;
+    
     n_freqs = size(magnitudes, 2);
     ir_size = 2 * (n_freqs - 1);
     n_ir_frames = size(magnitudes, 1);
     
+    % get IR from provided FR
     impulse_response = irfft(magnitudes, ir_size, 2);
 
     if window_size <= 0 || window_size > ir_size
@@ -21,6 +25,8 @@ function [out] = subtractive(n_samples, window_size, magnitudes)
     end
     
     window = repmat(window', n_ir_frames, 1);
+    
+    % apply hann window to IR
     impulse_response = window .* real(impulse_response);
     
     if padding > 0
@@ -33,15 +39,18 @@ function [out] = subtractive(n_samples, window_size, magnitudes)
     
     frame_size = ceil(n_samples / n_ir_frames);
     hop_size = frame_size;
+    
+    % divide audio into number of frames (= number of rows from 'magnitudes'
     audio_frames = buffer(signal, frame_size)';
     
     fft_size = 2^ceil(log2(ir_size + frame_size - 1));
+    
+    % convolve audio with windowed IR <=> multiply in frequency domain
     audio_fft = rfft(audio_frames, fft_size, 2);
     ir_fft = rfft(impulse_response, fft_size, 2);
-    
     audio_ir_fft = audio_fft .* ir_fft;
     
-
+    % apply "overlap and add" to the resulting frames to get back to samples
     audio_frames_out = irfft(audio_ir_fft, fft_size, 2);
     out_size = n_ir_frames * frame_size + max(fft_size - hop_size, 0);
     out = zeros(1, out_size);
