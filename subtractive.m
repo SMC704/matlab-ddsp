@@ -59,7 +59,7 @@ function [out] = subtractive(n_samples, window_size, magnitudes)
     out_size = n_ir_frames * frame_size + max(fft_size - hop_size, 0);
     out = zeros(1, out_size);
     for i=0:n_ir_frames-1
-        out = out + [zeros(1, i*hop_size) audio_frames_out(i+1, :) zeros(1, out_size - fft_size - i * hop_size)];
+        out(i*hop_size + 1:i * hop_size + fft_size) = out(i*hop_size + 1:i * hop_size + fft_size) + audio_frames_out(i+1, :);
     end
 end
 
