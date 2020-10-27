@@ -3,7 +3,9 @@ function [out] = subtractive(n_samples, window_size, magnitudes)
     
     % normalize magnitudes
     initial_bias = -5;
-    magnitudes = scale_fn(magnitudes + initial_bias);
+    
+    % optional; colab examplees do not use it
+    %magnitudes = scale_fn(magnitudes + initial_bias);
     
     % generate white noise
     signal = rand(1, n_samples) * 2 - 1;
