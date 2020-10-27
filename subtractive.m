@@ -1,6 +1,10 @@
 function [out] = subtractive(n_samples, window_size, magnitudes)
     % magnitudes: row = frames, column = freq responses
     
+    % normalize magnitudes
+    initial_bias = -5;
+    magnitudes = scale_fn(magnitudes + initial_bias);
+    
     % generate white noise
     signal = rand(1, n_samples) * 2 - 1;
     
@@ -57,4 +61,13 @@ function [out] = subtractive(n_samples, window_size, magnitudes)
     for i=0:n_ir_frames-1
         out = out + [zeros(1, i*hop_size) audio_frames_out(i+1, :) zeros(1, out_size - fft_size - i * hop_size)];
     end
+end
+
+function y = scale_fn(x)
+    
+    exponent = 10.0;
+    max_value = 2.0;
+    threshold = 1e-7;
+    
+    y = max_value * (1./(1+exp(-x))).^log(exponent) + threshold;
 end
