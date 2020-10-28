@@ -14,7 +14,7 @@
 %
 % TODO: using 50% overlapping hann windows
 
-function audio = additive(n_samples, sample_rate, amplitudes, harmonic_distribution, f0)
+function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harmonic_distribution, f0, prev_phases)
        
     % Scale the amplitudes
     amplitudes = scale_fn(amplitudes);
@@ -29,7 +29,7 @@ function audio = additive(n_samples, sample_rate, amplitudes, harmonic_distribut
     harmonic_distribution = harmonic_distribution ./ sum(harmonic_distribution, 2);
     
     % Plot synthesizer controls
-%     plot_controls(amplitudes, harmonic_distribution, f0);
+    % plot_controls(amplitudes, harmonic_distribution, f0);
     
     % Create harmonic amplitudes
     harmonic_amplitudes = amplitudes .* harmonic_distribution;
@@ -48,10 +48,13 @@ function audio = additive(n_samples, sample_rate, amplitudes, harmonic_distribut
     % phases = angular_cumsum(harmonic_angular_frequencies, n_samples);
     
     % Convert to waveforms
+    prev_phases = prev_phases(1, 1:n_harmonics);
+    phases = phases+prev_phases;
+    phases = mod(phases, 2*pi);
     wavs = sin(phases);
+    last_phases = phases(end,:);
     audio = harmonic_amplitudes .* wavs;
     audio = sum(audio, 2);
-
 end
 
 % Scale Function
@@ -123,7 +126,7 @@ end
 
 function plot_controls(amplitudes, harmonic_distribution, f0)
     
-    figure('Name', 'Synth Controls');
+%     figure('Name', 'Synth Controls');
     t = tiledlayout(3,1);
     nexttile;
     plot(amplitudes);
