@@ -140,12 +140,14 @@ function outputs = resample(inputs, n_samples, method)
     
     % Linear interpolation
     if strcmp(method, 'linear')
+        
         outputs = interp1(inputs, 1:(n_intervals / n_samples):n_frames, method);
         % Remove endpoint
         outputs = outputs(1:end-1, :);
         
     % 50% overlapping hann windows
     elseif strcmp(method, 'window')
+        
         % Constant overlap-add, half overlapping windows
         hop_size = floor(n_samples / n_intervals);
         window_length = 2 * hop_size;
@@ -167,20 +169,25 @@ end
 
 function signal = overlap_and_add(signal, frame_step)
     
+    % Window length
     frame_length = size(signal, 2);
+    
+    % Number of input frames + endpoint
     frames = size(signal, 1);
+    
+    % Number of harmonics
     channels = size(signal, 3);
     
     % Compute output length
     output_length = frame_length + frame_step * (frames - 1);
     
-    % Compute number of segments per frame
+    % Compute number of segments per frame (always 2 for 50% overlap and add)
     segments = ceil(frame_length / frame_step);
 
-    % Pad the frames dimension by `segments`
+    % Add zero padding according to number of segments
     signal = cat(1, signal, zeros(segments, size(signal, 2), size(signal, 3)));
     
-    % Reshape signal to split windows in segments, each with a length of frame_step
+    % Reshape signal to split windows in segments
     signal = permute(reshape(permute(signal, [2, 1, 3]), [frame_step, segments , size(signal, 1), channels]), [2, 1, 3, 4]);
     signal = permute(signal, [3, 2, 1, 4]);
     
@@ -188,17 +195,17 @@ function signal = overlap_and_add(signal, frame_step)
     signal = reshape(permute(signal, [1, 3, 2, 4]), [size(signal, 1) * segments, frame_step, channels]);
     signal = signal(1:end-2, :, :);
     
-    % Reshape to split windows into segments again
-    signal = permute(reshape(permute(signal, [2,1,3]), [frame_step, frames + segments - 1, segments, channels]), [2,1,3,4]);
+    % 50%-OVERLAP: Reshape signal to shift the second segment by 1 frame
+    signal = permute(reshape(permute(signal, [2, 1, 3]), [frame_step, frames + segments - 1, segments, channels]), [2, 1, 3, 4]);
     
-    % Now, reduce over the columns, to achieve the desired sum
+    % ADD: Sum first segment with shifted second segment
     signal = sum(signal, 3);
     signal = reshape(signal, [size(signal, 1), size(signal, 2), size(signal, 4)]);
     
-    % Flatten the array
-    signal = reshape(permute(signal, [2,1,3]), [(frames + segments - 1) * frame_step, channels]);
+    % Flatten the array to the shape [n_samples, n_harmonics]
+    signal = reshape(permute(signal, [2, 1, 3]), [(frames + segments - 1) * frame_step, channels]);
     
-    % Truncate to final length
+    % Truncate to final length (no effect for 50% overlap and add)
     signal = signal(1:output_length, :);
     
 end

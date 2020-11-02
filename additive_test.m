@@ -2,8 +2,8 @@
 
 % Replication of DDSP Tutorial 0
 
-n_frames = 20;
-hop_size = 4;
+n_frames = 1000;
+hop_size = 64;
 n_samples = n_frames * hop_size;
 sample_rate = 16000;
 
@@ -13,7 +13,7 @@ amplitudes = linspace(1.0, -3.0, n_frames)';
 
 % Harmonic Distribution [n_samples, n_harmonics]
 % Make harmonics decrease linearly with frequency
-n_harmonics = 5;
+n_harmonics = 30;
 harmonic_distribution = linspace(-2.0, 2.0, n_frames)' + linspace(3.0, -3.0, n_harmonics);
 
 % Fundamental frequency in Hz [n_samples, 1]
