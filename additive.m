@@ -4,15 +4,13 @@
 %
 % n_samples: int
 % sample_rate: int
-% amplitudes: Sample-wise oscillator peak amplitude. Shape: [n_samples, 1]
-% harmonic distribution: Sample-wise harmonic amplitude variations. Shape. [n_samples, n_harmonics]
-% f0: Sample-wise fundamental frequency in Hz. Shape: [n_samples, 1]
+% amplitudes: Frame-wise oscillator peak amplitude. Shape: [n_frames, 1]
+% harmonic distribution: Frame-wise harmonic amplitude variations. Shape. [n_frames, n_harmonics]
+% f0: Frame-wise fundamental frequency in Hz. Shape: [n_frames, 1]
 %
 % RETURNS:
 %
-% Audio Signal
-%
-% TODO: using 50% overlapping hann windows
+% Sample-wise audio signal
 
 function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harmonic_distribution, f0, prev_phases)
        
@@ -29,13 +27,17 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harm
     harmonic_distribution = harmonic_distribution ./ sum(harmonic_distribution, 2);
     
     % Plot synthesizer controls
-    % plot_controls(amplitudes, harmonic_distribution, f0);
+    plot_controls(amplitudes, harmonic_distribution, f0);
     
     % Create harmonic amplitudes
     harmonic_amplitudes = amplitudes .* harmonic_distribution;
     
+    % Create sample-wise envelopes
+    frequency_envelopes = resample(harmonic_frequencies, n_samples, 'linear');
+    amplitude_envelopes = resample(harmonic_amplitudes, n_samples, 'window');
+    
     % Convert frequency, Hz -> angular frequency, radians/sample
-    harmonic_angular_frequencies = harmonic_frequencies * 2 * pi; %radiant/second
+    harmonic_angular_frequencies = frequency_envelopes * 2 * pi; %radiant/second
     harmonic_angular_frequencies = harmonic_angular_frequencies / sample_rate; %radiant/sample
     
     % Accumulate phase and synthesize
@@ -47,13 +49,15 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harm
     %
     % phases = angular_cumsum(harmonic_angular_frequencies, n_samples);
     
-    % Convert to waveforms
+    % Save last phases of all harmonics for next buffer
     prev_phases = prev_phases(1, 1:n_harmonics);
     phases = phases+prev_phases;
     phases = mod(phases, 2*pi);
-    wavs = sin(phases);
     last_phases = phases(end,:);
-    audio = harmonic_amplitudes .* wavs;
+    
+    % Convert to waveforms
+    wavs = sin(phases);
+    audio = amplitude_envelopes .* wavs;
     audio = sum(audio, 2);
 end
 
@@ -124,9 +128,84 @@ function phase = angular_cumsum(angular_frequency, n_samples)
     
 end
 
+% Interpolates a signal from n_frames to n_samples
+%
+% Important: For upsampling, the target number of samples must be divisible by the number of input frames
+function outputs = resample(inputs, n_samples, method)
+
+    % Add endpoint for interpolation of last frame
+    inputs = [inputs; inputs(end, :)];
+    n_frames = size(inputs, 1);
+    n_intervals = n_frames-1;
+    
+    % Linear interpolation
+    if strcmp(method, 'linear')
+        outputs = interp1(inputs, 1:(n_intervals / n_samples):n_frames, method);
+        % Remove endpoint
+        outputs = outputs(1:end-1, :);
+        
+    % 50% overlapping hann windows
+    elseif strcmp(method, 'window')
+        % Constant overlap-add, half overlapping windows
+        hop_size = floor(n_samples / n_intervals);
+        window_length = 2 * hop_size;
+        window = hann(window_length, 'periodic')';
+        
+        % Add dimension for windowing and broadcast multiply
+        x = reshape(inputs, [size(inputs, 1), 1, size(inputs, 2)]);
+        x_windowed = x .* window;
+        
+        % Perform overlap and add
+        x = overlap_and_add(x_windowed, hop_size);
+        
+        % Trim the rise and fall of the first and last window
+        outputs = x(hop_size+1:end-hop_size,:);
+        
+    end
+    
+end
+
+function signal = overlap_and_add(signal, frame_step)
+    
+    frame_length = size(signal, 2);
+    frames = size(signal, 1);
+    channels = size(signal, 3);
+    
+    % Compute output length
+    output_length = frame_length + frame_step * (frames - 1);
+    
+    % Compute number of segments per frame
+    segments = ceil(frame_length / frame_step);
+
+    % Pad the frames dimension by `segments`
+    signal = cat(1, signal, zeros(segments, size(signal, 2), size(signal, 3)));
+    
+    % Reshape signal to split windows in segments, each with a length of frame_step
+    signal = permute(reshape(permute(signal, [2, 1, 3]), [frame_step, segments , size(signal, 1), channels]), [2, 1, 3, 4]);
+    signal = permute(signal, [3, 2, 1, 4]);
+    
+    % Reshape signal to concatenate segments to windows and truncate padding
+    signal = reshape(permute(signal, [1, 3, 2, 4]), [size(signal, 1) * segments, frame_step, channels]);
+    signal = signal(1:end-2, :, :);
+    
+    % Reshape to split windows into segments again
+    signal = permute(reshape(permute(signal, [2,1,3]), [frame_step, frames + segments - 1, segments, channels]), [2,1,3,4]);
+    
+    % Now, reduce over the columns, to achieve the desired sum
+    signal = sum(signal, 3);
+    signal = reshape(signal, [size(signal, 1), size(signal, 2), size(signal, 4)]);
+    
+    % Flatten the array
+    signal = reshape(permute(signal, [2,1,3]), [(frames + segments - 1) * frame_step, channels]);
+    
+    % Truncate to final length
+    signal = signal(1:output_length, :);
+    
+end
+
 function plot_controls(amplitudes, harmonic_distribution, f0)
     
-%     figure('Name', 'Synth Controls');
+    % figure('Name', 'Synth Controls');
     t = tiledlayout(3,1);
     nexttile;
     plot(amplitudes);

@@ -2,20 +2,24 @@
 
 % Replication of DDSP Tutorial 0
 
-n_samples = 64000;
+n_frames = 20;
+hop_size = 4;
+n_samples = n_frames * hop_size;
 sample_rate = 16000;
 
 % Amplitude [n_samples, 1]
 % Make amplitude linearly decay over time
-amplitudes = linspace(1.0, -3.0, n_samples)';
+amplitudes = linspace(1.0, -3.0, n_frames)';
 
 % Harmonic Distribution [n_samples, n_harmonics]
 % Make harmonics decrease linearly with frequency
-n_harmonics = 30;
-harmonic_distribution = linspace(-2.0, 2.0, n_samples)' + linspace(3.0, -3.0, n_harmonics);
+n_harmonics = 5;
+harmonic_distribution = linspace(-2.0, 2.0, n_frames)' + linspace(3.0, -3.0, n_harmonics);
 
 % Fundamental frequency in Hz [n_samples, 1]
-f0 = 440 * ones(n_samples, 1);
+f0 = 440 * ones(n_frames, 1);
+
+prev_phases = zeros(1, n_harmonics);
 
 % Plot raw inputs
 figure('Name', 'Raw Inputs');
@@ -36,5 +40,5 @@ xlabel(t,'samples');
 t.TileSpacing = 'none';
 
 % Synthesize audio
-audio = additive(n_samples, sample_rate, amplitudes, harmonic_distribution, f0);
+audio = additive(n_samples, sample_rate, amplitudes, harmonic_distribution, f0, prev_phases);
 soundsc(audio, sample_rate);
