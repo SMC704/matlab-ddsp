@@ -27,7 +27,7 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harm
     harmonic_distribution = harmonic_distribution ./ sum(harmonic_distribution, 2);
     
     % Plot synthesizer controls
-    plot_controls(amplitudes, harmonic_distribution, f0);
+    %plot_controls(amplitudes, harmonic_distribution, f0);
     
     % Create harmonic amplitudes
     harmonic_amplitudes = amplitudes .* harmonic_distribution;
