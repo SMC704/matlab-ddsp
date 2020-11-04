@@ -27,17 +27,20 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harm
     harmonic_distribution = harmonic_distribution ./ sum(harmonic_distribution, 2);
     
     % Plot synthesizer controls
-    plot_controls(amplitudes, harmonic_distribution, f0);
+    % plot_controls(amplitudes, harmonic_distribution, f0);
     
     % Create harmonic amplitudes
     harmonic_amplitudes = amplitudes .* harmonic_distribution;
     
     % Create sample-wise envelopes
-    frequency_envelopes = resample(harmonic_frequencies, n_samples, 'linear');
-    amplitude_envelopes = resample(harmonic_amplitudes, n_samples, 'window');
+    % TODO: reenable framing
+    %frequency_envelopes = resample(harmonic_frequencies, n_samples, 'linear');
+    %amplitude_envelopes = resample(harmonic_amplitudes, n_samples, 'window');
     
     % Convert frequency, Hz -> angular frequency, radians/sample
-    harmonic_angular_frequencies = frequency_envelopes * 2 * pi; %radiant/second
+    % TODO: reenable framing
+    %harmonic_angular_frequencies = frequency_envelopes * 2 * pi; %radiant/second
+    harmonic_angular_frequencies = harmonic_frequencies * 2 * pi; %radiant/second
     harmonic_angular_frequencies = harmonic_angular_frequencies / sample_rate; %radiant/sample
     
     % Accumulate phase and synthesize
@@ -57,7 +60,9 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harm
     
     % Convert to waveforms
     wavs = sin(phases);
-    audio = amplitude_envelopes .* wavs;
+    % TODO: reenable framing
+%     audio = amplitude_envelopes .* wavs;
+    audio = harmonic_amplitudes .* wavs;
     audio = sum(audio, 2);
 end
 

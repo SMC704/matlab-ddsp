@@ -49,5 +49,5 @@ else
     y=reshape(y,prod(s(1:d-1)),n,prod(s(d+1:end))); 
     s(d)=1+fix(n/2);
     y(:,s(d)+1:end,:)=[];
-    y=reshape(y,s);
+    y=real(reshape(y,s));
 end

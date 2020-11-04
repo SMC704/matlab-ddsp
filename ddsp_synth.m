@@ -1,4 +1,4 @@
-classdef plugin < audioPlugin
+classdef ddsp_synth < audioPlugin
     properties
         Pitch = 0;
         Noise_Level = 1.0;
@@ -51,15 +51,16 @@ classdef plugin < audioPlugin
         function out = process(plugin,in)
             audio = in(:,1);
             fs = plugin.getSampleRate();
-            buffer_size = size(in);
-            buffer_size = buffer_size(1);
+            buffer_size = numel(audio);
             out = zeros(size(in));
             
             % generate noise
             window_size = 256;
             magnitudes = getMagnitudes(audio, window_size); 
             noise = subtractive(buffer_size, window_size, magnitudes)'; 
-            out = out + noise(1:buffer_size)*plugin.Noise_Level;
+            y = noise(1:buffer_size);
+            out(1:end,1) = out(1:end,1) + y*plugin.Noise_Level;
+            out(1:end,2) = out(1:end,2) + y*plugin.Noise_Level;
             
             % pitch track only if over threshold
             if rms(audio) > 0.01
@@ -73,9 +74,10 @@ classdef plugin < audioPlugin
                 harmonic_weights = [hw12 hw23 hw34 hw45];
                 harmonic_weights = harmonic_weights(1:n_harmonics);
                 harmonic_distribution = ones(buffer_size, n_harmonics).*harmonic_weights;
-                amplitude = ones(1024, 1);
-                [audio, plugin.prev_phases] = additive(buffer_size, fs, amplitude, harmonic_distribution, p, plugin.prev_phases);
-                out = out + audio*plugin.Add_Level;
+                amplitude = ones(buffer_size, 1);
+                [y, plugin.prev_phases] = additive(buffer_size, fs, amplitude, harmonic_distribution, p, plugin.prev_phases);
+                out(1:end,1) = out(1:end,1) + y*plugin.Add_Level;
+                out(1:end,2) = out(1:end,2) + y*plugin.Add_Level;
             end
         end
         
@@ -87,6 +89,6 @@ classdef plugin < audioPlugin
             plugin.N_Harmonics = val;
             plugin.prev_phases = zeros(1, val);
         end
-            
+           
     end
 end

@@ -47,7 +47,19 @@ function [out] = subtractive(n_samples, window_size, magnitudes)
     hop_size = frame_size;
     
     % divide audio into number of frames (= number of rows from 'magnitudes'
-    audio_frames = buffer(signal, frame_size)';
+    % Dont user buffer. MATLAB coder doesn't like it - 
+%    audio_frames = buffer(signal, frame_size)';
+    desired_length = n_ir_frames * frame_size;
+    padding_needed = desired_length - numel(signal);
+    signal_padded = [signal zeros(1, padding_needed)];
+    audio_frames = zeros(n_ir_frames, frame_size);
+    start_pos = 1;
+    end_pos = frame_size;
+    for n = 1:1:n_ir_frames
+        audio_frames(n,:) = signal_padded(start_pos:end_pos);
+        start_pos = start_pos + hop_size;
+        end_pos = end_pos + hop_size;
+    end
     
     fft_size = 2^ceil(log2(ir_size + frame_size - 1));
     
@@ -61,7 +73,7 @@ function [out] = subtractive(n_samples, window_size, magnitudes)
     out_size = n_ir_frames * frame_size + max(fft_size - hop_size, 0);
     out = zeros(1, out_size);
     for i=0:n_ir_frames-1
-        out(i*hop_size + 1:i * hop_size + fft_size) = out(i*hop_size + 1:i * hop_size + fft_size) + audio_frames_out(i+1, :);
+        out(i*hop_size + 1:i * hop_size + fft_size) = real(out(i*hop_size + 1:i * hop_size + fft_size) + audio_frames_out(i+1, :));
     end
 end
 
