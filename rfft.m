@@ -31,10 +31,10 @@ function y=rfft(x,n,d)
 %   http://www.gnu.org/copyleft/gpl.html or by writing to
 %   Free Software Foundation, Inc.,675 Mass Ave, Cambridge, MA 02139, USA.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+coder.varsize('y');
 s=size(x);
 if prod(s)==1
-    y=x
+    y=x;
 else
     if nargin <3 || isempty(d)
         d=find(s>1,1);
@@ -46,8 +46,11 @@ else
         n=s(d);
     end
     y=fft(x,n,d);
-    y=reshape(y,prod(s(1:d-1)),n,prod(s(d+1:end))); 
+    %y=reshape(y,prod(s(1:d-1)),n,prod(s(d+1:end))); 
+    %we probably don't need this ^
     s(d)=1+fix(n/2);
     y(:,s(d)+1:end,:)=[];
-    y=real(reshape(y,s));
+    % y=real(reshape(y,s));
+    % And this ^
+    y = real(y);
 end
