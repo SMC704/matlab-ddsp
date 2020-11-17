@@ -124,23 +124,23 @@ function phase = angular_cumsum(angular_frequency, n_samples)
     
 end
 
-function plot_controls(amplitudes, harmonic_distribution, f0)
-    
-    % figure('Name', 'Synth Controls');
-    t = tiledlayout(3,1);
-    nexttile;
-    plot(amplitudes);
-    title('Amplitudes');
-    ylabel('amplitude');
-    nexttile;
-    plot(harmonic_distribution);
-    title('Harmonic Distribution');
-    ylabel('amplitude');
-    nexttile;
-    plot(f0);
-    title('Fundamental Frequency');
-    ylabel('frequency');
-    xlabel(t,'samples');
-    t.TileSpacing = 'none';
-    
-end
+% function plot_controls(amplitudes, harmonic_distribution, f0)
+%     
+%     % figure('Name', 'Synth Controls');
+%     t = tiledlayout(3,1);
+%     nexttile;
+%     plot(amplitudes);
+%     title('Amplitudes');
+%     ylabel('amplitude');
+%     nexttile;
+%     plot(harmonic_distribution);
+%     title('Harmonic Distribution');
+%     ylabel('amplitude');
+%     nexttile;
+%     plot(f0);
+%     title('Fundamental Frequency');
+%     ylabel('frequency');
+%     xlabel(t,'samples');
+%     t.TileSpacing = 'none';
+%     
+% end
