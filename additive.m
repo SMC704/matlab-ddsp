@@ -2,9 +2,10 @@
 %
 % INPUTS:
 %
+% n_samples: int
 % sample_rate: int
 % amplitudes: Frame-wise oscillator peak amplitude. Shape: [n_frames, 1]
-% harmonic distribution: Frame-wise harmonic amplitude variations. Shape. [n_frames, n_harmonics]
+% harmonic distribution: Frame-wise harmonic amplitude variations. Shape. [n_harmonics]
 % f0: Frame-wise fundamental frequency in Hz. Shape: [n_frames, 1]
 %
 % RETURNS:
@@ -23,17 +24,15 @@ function [audio,last_phases] = additive(sample_rate, amplitudes, harmonic_distri
     harmonic_distribution = remove_above_nyquist(harmonic_frequencies, harmonic_distribution, sample_rate);
     
     % Normalize the harmonic distribution
-%     harmonic_distribution = harmonic_distribution ./ sum(harmonic_distribution, 2); %%%%% DO A FOR LOOP!
     harm_sum = sum(harmonic_distribution,2);
     for c = 1:size(harmonic_distribution,2)
         harmonic_distribution(1:end,c) = harmonic_distribution(1:end,c) ./ harm_sum;
     end
     
     % Create harmonic amplitudes
-%     harmonic_amplitudes = amplitudes .* harmonic_distribution;
-    harmonic_amplitudes = zeros(size(harmonic_distribution));
+    harmonic_amplitudes = zeros(size(amplitudes,1),size(harmonic_distribution,1));
     for c = 1:size(harmonic_amplitudes,2)
-       harmonic_amplitudes(1:end,c) = harmonic_distribution(1:end,c) .* amplitudes; 
+        harmonic_amplitudes(1:end,c) = harmonic_distribution(c) * amplitudes;
     end
     
     harmonic_angular_frequencies = harmonic_frequencies * 2 * pi; %radiant/second
@@ -44,7 +43,6 @@ function [audio,last_phases] = additive(sample_rate, amplitudes, harmonic_distri
     
     % Save last phases of all harmonics for next buffer
     prev_phases = prev_phases(1, 1:n_harmonics);
-%     phases = phases+prev_phases;
     for c = 1:size(phases,2)
        phases(1:end,c) = phases(1:end,c)+prev_phases(1,c); 
     end
@@ -53,75 +51,31 @@ function [audio,last_phases] = additive(sample_rate, amplitudes, harmonic_distri
     
     % Convert to waveforms
     wavs = sin(phases);
-    audio = harmonic_amplitudes .* wavs;
-    audio = sum(audio, 2);
+    audio = zeros(size(amplitudes));
+    for c = 1:size(harmonic_amplitudes,2)
+        audio = audio + harmonic_amplitudes(1:end,c) .* wavs;
+    end
 end
 
 % Scale Function
 % Exponentiated Sigmoid pointwise nonlinearity
 function y = scale_fn(x)
-    
     exponent = 10.0;
     max_value = 2.0;
     threshold = 1e-7;
-    
     y = max_value * (1./(1+exp(-x))).^log(exponent) + threshold;
 end
 
 % Calculate sample-wise oscillator frequencies of harmonics
 function harmonic_frequencies = get_harmonic_frequencies(f0, n_harmonics)
-
     f_ratios = linspace(1, n_harmonics, n_harmonics);
     harmonic_frequencies = f0 * f_ratios;
 end
 
 % Set amplitudes for oscillators above nyquist to 0
 function harmonic_distribution_nyquist = remove_above_nyquist(harmonic_frequencies, harmonic_distribution, sample_rate)
-
     harmonic_distribution(harmonic_frequencies >= sample_rate/2) = 0;
     harmonic_distribution_nyquist = harmonic_distribution;
-end
-
-% Get phase by cumulative sumation of angular frequency
-% Returns: The accumulated phase in range [0, 2*pi]
-function phase = angular_cumsum(angular_frequency, n_samples)
-    
-    chunk_size = 1000;
-    n_frequencies = size(angular_frequency, 2);
-    
-    % Pad if needed
-    remainder = mod(n_samples, chunk_size);
-    if remainder > 0
-        pad = chunk_size - remainder;
-        angular_frequency = [angular_frequency; zeros(pad,n_frequencies)];
-    end
-    
-    % Split input into chunks
-    length = size(angular_frequency,1);
-    n_chunks = length / chunk_size;
-    chunks = permute(reshape(angular_frequency',[n_frequencies,chunk_size,n_chunks]), [2,1,3]); % workaround because Matlab reshape only works column-wise
-    phase = cumsum(chunks, 1);
-    
-    % Add offsets
-    % Offset of the next row is the last entry of the previous row
-    offsets = mod(phase(end, :, :), 2*pi);
-    offsets = cat(3, zeros(1, n_frequencies, 1), offsets); % zero padding since offset is 0 for first chunk
-    offsets(:,:,end) = [];
-    
-    % Offset is cumulative among the rows.
-    offsets = cumsum(offsets, 1);
-    offsets = mod(offsets, 2*pi);
-    phase = phase + offsets;
-    
-    % Put back in original shape
-    phase = mod(phase, 2.0 * pi);
-    phase = reshape(permute(phase,[2,1,3]), [n_frequencies, length])';
-    
-    % Remove padding if added it
-    if remainder > 0
-        phase(n_samples+1:end, :) = [];
-    end
-    
 end
 
 % function plot_controls(amplitudes, harmonic_distribution, f0)
