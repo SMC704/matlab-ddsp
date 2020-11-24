@@ -76,7 +76,7 @@ end
 
 % Set amplitudes for oscillators above nyquist to 0
 function harmonic_distribution_nyquist = remove_above_nyquist(harmonic_frequencies, harmonic_distribution, sample_rate)
-    harmonic_distribution(harmonic_frequencies >= sample_rate/2) = 0;
+    harmonic_distribution(harmonic_frequencies(1,1:end) >= sample_rate/2) = 0;
     harmonic_distribution_nyquist = harmonic_distribution;
 end
 

@@ -1,84 +1,49 @@
-function [out] = subtractive(n_samples, window_size, magnitudes)
+function [out] = subtractive(n_samples, magnitudes, color)
     % magnitudes: row = frames, column = freq responses
+    % magnitudes should be 65
     
-    % normalize magnitudes
-    initial_bias = -5;
+%     normalize magnitudes
+    initial_bias = 1;
     
-    % optional; colab examplees do not use it
+%     optional; colab examplees do not use it
     magnitudes = scale_fn(magnitudes + initial_bias);
     
     % generate white noise
-    signal = rand(1, n_samples) * 2 - 1;
+    white_n = dsp.ColoredNoise(0, 4161, 1);
+    brown_n = dsp.ColoredNoise(2, 4161, 1);
+    violet_n = dsp.ColoredNoise(-1.99, 4161, 1);
+
+    white_noise = white_n();
+    brown_noise = brown_n();
+    violet_noise = violet_n();
     
-    n_freqs = size(magnitudes, 2);
+    release(white_n);
+    release(brown_n);
+    release(violet_n);
+    
+    signal = (1 - abs(color))*white_noise;
+    if (color > 0)
+        signal = signal + color*violet_noise;
+    end
+    if (color < 0)
+        signal = signal + abs(color)*brown_noise;
+    end
+%     signal = rand(n_samples, 1) * 2 - 1;
+    
+    signal = signal(1:n_samples+65);
+
+    n_freqs = size(magnitudes, 1);
     ir_size = 2 * (n_freqs - 1);
     
-    % get IR from provided FR
-    impulse_response = irfft(magnitudes, ir_size, 2);
+    norm_freq = linspace(0,1,n_freqs-1);
+    
+    b = firls(ir_size,norm_freq, magnitudes(1:end-1));
+    filtered_signal = filter(b, 1, signal);
+    out = zeros(4096,1);
+%     out(1:n_samples) = filtered_signal(66:n_samples+65);
+    out(1:n_samples) = filtered_signal(66:n_samples+65);
 
-    if window_size <= 0 || window_size > ir_size
-        window_size = ir_size;
-    end
-    window = hann(window_size);
-    
-    padding = ir_size - window_size;
-    half_idx = 0;
-    if padding > 0
-        half_idx = floor((window_size + 1) / 2);
-        window = [window(half_idx + 1:end); zeros(padding, 1); window(1:half_idx)];
-    else
-        window = fftshift(window);
-    end
-    
-%     window = repmat(window', n_ir_frames, 1);
-    
-    % apply hann window to IR
-    impulse_response = window' .* real(impulse_response);
-    
-    if padding > 0
-        first_half_start = (ir_size - (half_idx - 1)) + 1;
-        second_half_end = half_idx + 1;
-        impulse_response = [impulse_response(:, first_half_start+1:end) impulse_response(:, 1:second_half_end)];
-    else
-        impulse_response = fftshift(impulse_response, 2);
-    end
-    
-%     frame_size = ceil(n_samples / n_ir_frames);
-%     hop_size = frame_size;
 
-    frame_size = n_samples;
-    
-%     % divide audio into number of frames (= number of rows from 'magnitudes'
-%     % Dont user buffer. MATLAB coder doesn't like it - 
-% %    audio_frames = buffer(signal, frame_size)';
-%     desired_length = n_ir_frames * frame_size;
-%     padding_needed = desired_length - numel(signal);
-%     signal_padded = [signal zeros(1, padding_needed)];
-%     audio_frames = zeros(n_ir_frames, frame_size);
-%     start_pos = 1;
-%     end_pos = frame_size;
-%     for n = 1:1:n_ir_frames
-%         audio_frames(n,:) = signal_padded(start_pos:end_pos);
-%         start_pos = start_pos + hop_size;
-%         end_pos = end_pos + hop_size;
-%     end
-    
-    fft_size = 2^ceil(log2(ir_size + frame_size - 1));
-    
-    % convolve audio with windowed IR <=> multiply in frequency domain
-    audio_fft = rfft(signal, fft_size, 2);
-    ir_fft = rfft(impulse_response, fft_size, 2);
-    audio_ir_fft = audio_fft .* ir_fft;
-    
-    % apply "overlap and add" to the resulting frames to get back to samples
-%     audio_frames_out = irfft(audio_ir_fft, fft_size, 2);
-    out = real(irfft(audio_ir_fft, n_samples, 2));
-%     out_size = n_ir_frames * frame_size + max(fft_size - hop_size, 0);
-%     out_size = 1024;
-%     out = zeros(1, out_size);
-%     for i=0:n_ir_frames-1
-%         out(i*hop_size + 1:i * hop_size + fft_size) = real(out(i*hop_size + 1:i * hop_size + fft_size) + audio_frames_out(i+1, :));
-%     end
 end
 
 function y = scale_fn(x)
