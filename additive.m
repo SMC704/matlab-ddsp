@@ -2,7 +2,6 @@
 %
 % INPUTS:
 %
-% n_samples: int
 % sample_rate: int
 % amplitudes: Frame-wise oscillator peak amplitude. Shape: [n_frames, 1]
 % harmonic distribution: Frame-wise harmonic amplitude variations. Shape. [n_harmonics]
@@ -12,8 +11,12 @@
 %
 % Sample-wise audio signal
 
-function [audio,last_phases] = additive(sample_rate, amplitudes, harmonic_distribution, f0, prev_phases)
+function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harmonic_distribution, f0, prev_phases)
        
+    % Resize the input
+    amplitudes = amplitudes(1:n_samples,1);
+    f0 = f0(1:n_samples,1);
+
     % Scale the amplitudes
     amplitudes = scale_fn(amplitudes);
     harmonic_distribution = scale_fn(harmonic_distribution);
