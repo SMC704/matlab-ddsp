@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2018b">
-  <configuration build-checksum="2681390147" file="C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\DDSPSynth.prj" location="C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp" name="DDSPSynth" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="72823322" file="C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\DDSPSynth.prj" location="C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp" name="DDSPSynth" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
       <param.BuiltInstrumentedMex>false</param.BuiltInstrumentedMex>
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
@@ -860,7 +860,7 @@
     <param.AutoInferUnboundedSizeThreshold>2048</param.AutoInferUnboundedSizeThreshold>
     <param.EnableFixedPointStep>false</param.EnableFixedPointStep>
     <param.EnableScreener>true</param.EnableScreener>
-    <param.AnnotationChecksum>1923789417</param.AnnotationChecksum>
+    <param.AnnotationChecksum>2562792185</param.AnnotationChecksum>
     <var.LegacyTarget />
     <var.MirrorOnOpen>false</var.MirrorOnOpen>
     <param.FixedPointEnabled>false</param.FixedPointEnabled>
@@ -869,13 +869,13 @@
     <param.unifiedParamStorage />
     <var.gc.lastOutputRoot>codegen\lib\DDSPSynth</var.gc.lastOutputRoot>
     <var.gc.lastOutputType>C_CODE</var.gc.lastOutputType>
-    <var.gc.preBuildChecksum>2681390147</var.gc.preBuildChecksum>
+    <var.gc.preBuildChecksum>72823322</var.gc.preBuildChecksum>
     <var.cfi.lastOutputRoot>codegen\mex\additive_mex</var.cfi.lastOutputRoot>
     <var.cfi.preBuildChecksum>23840416</var.cfi.preBuildChecksum>
     <var.lastCfiTestSnippet>generate_cpp_helper</var.lastCfiTestSnippet>
     <var.outdatedOnRestore>false</var.outdatedOnRestore>
-    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\additive.m&lt;/file&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\irfft.m&lt;/file&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\rfft.m&lt;/file&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\subtractive.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;696342069&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
-    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\additive.m&lt;/file&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\irfft.m&lt;/file&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\rfft.m&lt;/file&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\subtractive.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
+    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\additive.m&lt;/file&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\subtractive.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;933915571&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
+    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\additive.m&lt;/file&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\subtractive.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
     <param.forceMexBuild>false</param.forceMexBuild>
     <param.NoDefaultJIT>false</param.NoDefaultJIT>
     <param.configImportActive>false</param.configImportActive>
@@ -1076,10 +1076,10 @@
     </unset>
     <fileset.entrypoints>
       <file custom-data-expanded="false" value="${PROJECT_ROOT}\additive.m">
-        <Marker>1606212623557</Marker>
+        <Marker>1606215631030</Marker>
       </file>
       <file custom-data-expanded="false" value="${PROJECT_ROOT}\subtractive.m">
-        <Marker>1605786971742</Marker>
+        <Marker>1606215631541</Marker>
       </file>
     </fileset.entrypoints>
     <fileset.testbench>
@@ -1100,7 +1100,7 @@
               <Size>1 x 1</Size>
               <Value />
               <InitialValue />
-              <UserDefined>true</UserDefined>
+              <UserDefined>false</UserDefined>
               <Complex>false</Complex>
             </type>
             <type typeId="1">
@@ -1117,7 +1117,7 @@
               <Size>4096 x 1</Size>
               <Value />
               <InitialValue />
-              <UserDefined>true</UserDefined>
+              <UserDefined>false</UserDefined>
               <Complex>false</Complex>
               <Sparse>false</Sparse>
             </type>
@@ -1126,7 +1126,7 @@
               <Size>50 x 1</Size>
               <Value />
               <InitialValue />
-              <UserDefined>true</UserDefined>
+              <UserDefined>false</UserDefined>
               <Complex>false</Complex>
               <Sparse>false</Sparse>
             </type>
@@ -1153,7 +1153,7 @@
               <Size>1024 x 1</Size>
               <Value />
               <InitialValue />
-              <UserDefined>true</UserDefined>
+              <UserDefined>false</UserDefined>
               <Complex>false</Complex>
               <Sparse>false</Sparse>
             </type>

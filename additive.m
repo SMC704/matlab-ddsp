@@ -18,19 +18,19 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harm
     f0 = f0(1:n_samples,1);
 
     % Scale the amplitudes
-    amplitudes = scale_fn(amplitudes);
-    harmonic_distribution = scale_fn(harmonic_distribution);
+%     amplitudes = scale_fn(amplitudes);
+%     harmonic_distribution = scale_fn(harmonic_distribution);
     
     % Bandlimit the harmonic distribution
-    n_harmonics = size(harmonic_distribution, 2);
+    n_harmonics = size(harmonic_distribution, 1);
     harmonic_frequencies = get_harmonic_frequencies(f0, n_harmonics);
     harmonic_distribution = remove_above_nyquist(harmonic_frequencies, harmonic_distribution, sample_rate);
     
     % Normalize the harmonic distribution
-    harm_sum = sum(harmonic_distribution,2);
-    for c = 1:size(harmonic_distribution,2)
-        harmonic_distribution(1:end,c) = harmonic_distribution(1:end,c) ./ harm_sum;
-    end
+%     harm_sum = sum(harmonic_distribution,2);
+%     for c = 1:size(harmonic_distribution,2)
+%         harmonic_distribution(1:end,c) = harmonic_distribution(1:end,c) ./ harm_sum;
+%     end
     
     % Create harmonic amplitudes
     harmonic_amplitudes = zeros(size(amplitudes,1),size(harmonic_distribution,1));
@@ -44,10 +44,9 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harm
     % Accumulate phase and synthesize
     phases = cumsum(harmonic_angular_frequencies);
     
-    % Save last phases of all harmonics for next buffer
-    prev_phases = prev_phases(1, 1:n_harmonics);
+    % Save last phases of all harmonics for next buffer;
     for c = 1:size(phases,2)
-       phases(1:end,c) = phases(1:end,c)+prev_phases(1,c); 
+       phases(1:end,c) = phases(1:end,c)+prev_phases(c,1); 
     end
     phases = mod(phases, 2*pi);
     last_phases = phases(end,:);
@@ -56,7 +55,7 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harm
     wavs = sin(phases);
     audio = zeros(size(amplitudes));
     for c = 1:size(harmonic_amplitudes,2)
-        audio = audio + harmonic_amplitudes(1:end,c) .* wavs;
+        audio(1:end) = audio(1:end) + harmonic_amplitudes(1:end,c) .* wavs(1:end,c);
     end
 end
 
