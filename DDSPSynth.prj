@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2018b">
-  <configuration build-checksum="72823322" file="C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\DDSPSynth.prj" location="C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp" name="DDSPSynth" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="72823322" file="/Users/Robin/Documents/MATLAB/matlab-ddsp/DDSPSynth.prj" location="/Users/Robin/Documents/MATLAB/matlab-ddsp" name="DDSPSynth" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
       <param.BuiltInstrumentedMex>false</param.BuiltInstrumentedMex>
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
@@ -27,14 +27,14 @@
       <param.MATLABSourceComments>false</param.MATLABSourceComments>
       <param.ReservedNameArray />
       <param.EnableDebugging>false</param.EnableDebugging>
-      <param.ReportPotentialDifferences>false</param.ReportPotentialDifferences>
+      <param.ReportPotentialDifferences>true</param.ReportPotentialDifferences>
       <param.GenerateReport>true</param.GenerateReport>
       <param.LaunchReport>false</param.LaunchReport>
       <param.ReportInfoVarName />
       <param.DefaultTestFile />
       <param.MergeInstrumentationResults>false</param.MergeInstrumentationResults>
       <param.VerificationMode>option.VerificationMode.None</param.VerificationMode>
-      <param.VerificationStatus>option.VerificationStatus.Passed</param.VerificationStatus>
+      <param.VerificationStatus>option.VerificationStatus.FailedInference</param.VerificationStatus>
       <param.EnableMexProfiling>false</param.EnableMexProfiling>
       <var.BuiltWithMexProfiling>false</var.BuiltWithMexProfiling>
       <param.CustomSourceCode />
@@ -197,7 +197,7 @@
       <param.ReservedNameArray />
       <param.RuntimeChecks>false</param.RuntimeChecks>
       <param.Verbose>false</param.Verbose>
-      <param.ReportPotentialDifferences>false</param.ReportPotentialDifferences>
+      <param.ReportPotentialDifferences>true</param.ReportPotentialDifferences>
       <param.GenerateReport>true</param.GenerateReport>
       <param.GenerateCodeMetricsReport>false</param.GenerateCodeMetricsReport>
       <param.GenerateCodeReplacementReport>false</param.GenerateCodeReplacementReport>
@@ -235,12 +235,12 @@
       <param.target.ActiveTarget />
       <param.HardwareVendor.Production>Generic</param.HardwareVendor.Production>
       <param.HardwareType.Production>MATLAB Host Computer</param.HardwareType.Production>
-      <param.HWDeviceType.Production>Generic-&gt;MATLAB Host Computer</param.HWDeviceType.Production>
-      <var.instance.enabled.Production>true</var.instance.enabled.Production>
+      <param.HWDeviceType.Production />
+      <var.instance.enabled.Production />
       <param.HardwareSizeChar.Production>8</param.HardwareSizeChar.Production>
       <param.HardwareSizeShort.Production>16</param.HardwareSizeShort.Production>
       <param.HardwareSizeInt.Production>32</param.HardwareSizeInt.Production>
-      <param.HardwareSizeLong.Production>32</param.HardwareSizeLong.Production>
+      <param.HardwareSizeLong.Production>64</param.HardwareSizeLong.Production>
       <param.HardwareSizeLongLong.Production>64</param.HardwareSizeLongLong.Production>
       <param.HardwareSizeFloat.Production>32</param.HardwareSizeFloat.Production>
       <param.HardwareSizeDouble.Production>64</param.HardwareSizeDouble.Production>
@@ -256,12 +256,12 @@
       <param.HardwareDivisionRounding.Production>option.HardwareDivisionRounding.Zero</param.HardwareDivisionRounding.Production>
       <param.HardwareVendor.Target>Generic</param.HardwareVendor.Target>
       <param.HardwareType.Target>MATLAB Host Computer</param.HardwareType.Target>
-      <param.HWDeviceType.Target>Generic-&gt;MATLAB Host Computer</param.HWDeviceType.Target>
-      <var.instance.enabled.Target>false</var.instance.enabled.Target>
+      <param.HWDeviceType.Target />
+      <var.instance.enabled.Target />
       <param.HardwareSizeChar.Target>8</param.HardwareSizeChar.Target>
       <param.HardwareSizeShort.Target>16</param.HardwareSizeShort.Target>
       <param.HardwareSizeInt.Target>32</param.HardwareSizeInt.Target>
-      <param.HardwareSizeLong.Target>32</param.HardwareSizeLong.Target>
+      <param.HardwareSizeLong.Target>64</param.HardwareSizeLong.Target>
       <param.HardwareSizeLongLong.Target>64</param.HardwareSizeLongLong.Target>
       <param.HardwareSizeFloat.Target>32</param.HardwareSizeFloat.Target>
       <param.HardwareSizeDouble.Target>64</param.HardwareSizeDouble.Target>
@@ -310,14 +310,14 @@
       <param.GenerateDefaultInSwitch>false</param.GenerateDefaultInSwitch>
       <param.EnableTraceability>true</param.EnableTraceability>
       <param.UseECoderFeatures>false</param.UseECoderFeatures>
-      <param.psCustomPrjState>false</param.psCustomPrjState>
+      <param.psCustomPrjState />
       <param.psCustomProjectFile />
-      <param.psCheckConfValue>option.psCheckConfValue.onWarnCheckConfDlg</param.psCheckConfValue>
-      <param.psUniqueOutPutState>true</param.psUniqueOutPutState>
-      <param.psOpenResultsState>true</param.psOpenResultsState>
-      <param.psProductModeValue>option.psProductModeValue.codeProver</param.psProductModeValue>
-      <param.psQuickConfValue>option.psQuickConfValue.proj</param.psQuickConfValue>
-      <param.psOutputFolder>results_$codegenName$</param.psOutputFolder>
+      <param.psCheckConfValue />
+      <param.psUniqueOutPutState />
+      <param.psOpenResultsState />
+      <param.psProductModeValue />
+      <param.psQuickConfValue />
+      <param.psOutputFolder />
       <unset>
         <param.WorkingFolder />
         <param.SpecifiedWorkingFolder />
@@ -423,7 +423,6 @@
         <param.HardwareSizeChar.Production />
         <param.HardwareSizeShort.Production />
         <param.HardwareSizeInt.Production />
-        <param.HardwareSizeLong.Production />
         <param.HardwareSizeLongLong.Production />
         <param.HardwareSizeFloat.Production />
         <param.HardwareSizeDouble.Production />
@@ -437,7 +436,6 @@
         <param.HardwareSizeChar.Target />
         <param.HardwareSizeShort.Target />
         <param.HardwareSizeInt.Target />
-        <param.HardwareSizeLong.Target />
         <param.HardwareSizeLongLong.Target />
         <param.HardwareSizeFloat.Target />
         <param.HardwareSizeDouble.Target />
@@ -836,7 +834,7 @@
       </unset>
     </profile>
     <param.objective>option.objective.c</param.objective>
-    <param.WorkflowStep>generateCode</param.WorkflowStep>
+    <param.WorkflowStep>verifyCompatibility</param.WorkflowStep>
     <param.TestSnippets>
       <item>generate_cpp_helper</item>
       <item>subtractive(1024, 1024, zeros(1,1024))</item>
@@ -845,11 +843,11 @@
     </param.TestSnippets>
     <param.ExternalFcnMajority>column</param.ExternalFcnMajority>
     <param.UseGlobals>option.UseGlobals.No</param.UseGlobals>
-    <param.outputfile>${PROJECT_ROOT}\codegen\lib\DDSPSynth\DDSPSynth.lib</param.outputfile>
+    <param.outputfile>${PROJECT_ROOT}/codegen/lib/DDSPSynth/DDSPSynth.a</param.outputfile>
     <param.version>R2012a</param.version>
     <param.HasECoderFeatures>false</param.HasECoderFeatures>
     <param.HasGpuCoder>false</param.HasGpuCoder>
-    <var.HasNeuralNetworkToolbox>true</var.HasNeuralNetworkToolbox>
+    <var.HasNeuralNetworkToolbox>false</var.HasNeuralNetworkToolbox>
     <param.mex.mainhtml />
     <param.grt.mainhtml />
     <param.CallGeneratedCodeFromTest>true</param.CallGeneratedCodeFromTest>
@@ -870,12 +868,12 @@
     <var.gc.lastOutputRoot>codegen\lib\DDSPSynth</var.gc.lastOutputRoot>
     <var.gc.lastOutputType>C_CODE</var.gc.lastOutputType>
     <var.gc.preBuildChecksum>72823322</var.gc.preBuildChecksum>
-    <var.cfi.lastOutputRoot>codegen\mex\additive_mex</var.cfi.lastOutputRoot>
-    <var.cfi.preBuildChecksum>23840416</var.cfi.preBuildChecksum>
+    <var.cfi.lastOutputRoot>codegen/mex/additive_mex</var.cfi.lastOutputRoot>
+    <var.cfi.preBuildChecksum>2489657919</var.cfi.preBuildChecksum>
     <var.lastCfiTestSnippet>generate_cpp_helper</var.lastCfiTestSnippet>
     <var.outdatedOnRestore>false</var.outdatedOnRestore>
     <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\additive.m&lt;/file&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\subtractive.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;933915571&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
-    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\additive.m&lt;/file&gt;&lt;file&gt;C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\subtractive.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
+    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;/Users/Robin/Documents/MATLAB/matlab-ddsp/additive.m&lt;/file&gt;&lt;file&gt;/Users/Robin/Documents/MATLAB/matlab-ddsp/subtractive.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
     <param.forceMexBuild>false</param.forceMexBuild>
     <param.NoDefaultJIT>false</param.NoDefaultJIT>
     <param.configImportActive>false</param.configImportActive>
@@ -887,7 +885,7 @@
     <param.mex.outputfile>additive_mex</param.mex.outputfile>
     <param.grt.outputfile>DDSPSynth</param.grt.outputfile>
     <param.artifact>option.target.artifact.lib</param.artifact>
-    <param.outputfile>${PROJECT_ROOT}\codegen\lib\DDSPSynth\DDSPSynth.lib</param.outputfile>
+    <param.outputfile>${PROJECT_ROOT}/codegen/lib/DDSPSynth/DDSPSynth.a</param.outputfile>
     <param.CppNamespace />
     <param.gpu.Enabled>false</param.gpu.Enabled>
     <param.gpu.KernelNamePrefix />
@@ -900,7 +898,7 @@
     <param.gpu.EnableCUSOLVER>false</param.gpu.EnableCUSOLVER>
     <param.gpu.EnableCUFFT>false</param.gpu.EnableCUFFT>
     <param.gpu.Benchmarking>false</param.gpu.Benchmarking>
-    <param.gpu.SafeBuild>false</param.gpu.SafeBuild>
+    <param.gpu.SafeBuild>true</param.gpu.SafeBuild>
     <param.gpu.ComputeCapability />
     <param.gpu.CustomComputeCapability />
     <param.gpu.CompilerFlags />
@@ -908,9 +906,9 @@
     <var.hasGpu>false</var.hasGpu>
     <var.isDeepLearningForMatlabCoderEnabled>true</var.isDeepLearningForMatlabCoderEnabled>
     <param.deeplearning.TargetLib>option.deeplearning.targetlibrary.none</param.deeplearning.TargetLib>
-    <var.cfiTargetLibSuppression>false</var.cfiTargetLibSuppression>
-    <var.hasMatlabDeepLearningSupportPackage>false</var.hasMatlabDeepLearningSupportPackage>
-    <var.hasGpuDeepLearningSupportPackage>false</var.hasGpuDeepLearningSupportPackage>
+    <var.cfiTargetLibSuppression>true</var.cfiTargetLibSuppression>
+    <var.hasMatlabDeepLearningSupportPackage>true</var.hasMatlabDeepLearningSupportPackage>
+    <var.hasGpuDeepLearningSupportPackage>true</var.hasGpuDeepLearningSupportPackage>
     <param.tensorrt.DataType>option.tensorrt.datatype.fp32</param.tensorrt.DataType>
     <param.tensorrt.DataPath />
     <param.tensorrt.NumCalibrationBatches>1</param.tensorrt.NumCalibrationBatches>
@@ -1019,7 +1017,8 @@
       <var.hasGpu />
       <var.isDeepLearningForMatlabCoderEnabled />
       <param.deeplearning.TargetLib />
-      <var.cfiTargetLibSuppression />
+      <var.hasMatlabDeepLearningSupportPackage />
+      <var.hasGpuDeepLearningSupportPackage />
       <param.tensorrt.DataType />
       <param.tensorrt.DataPath />
       <param.tensorrt.NumCalibrationBatches />
@@ -1075,18 +1074,18 @@
       <param.FixedPointUseDesignRanges />
     </unset>
     <fileset.entrypoints>
-      <file custom-data-expanded="false" value="${PROJECT_ROOT}\additive.m">
+      <file custom-data-expanded="false" value="${PROJECT_ROOT}/additive.m">
         <Marker>1606215631030</Marker>
       </file>
-      <file custom-data-expanded="false" value="${PROJECT_ROOT}\subtractive.m">
-        <Marker>1606215631541</Marker>
+      <file custom-data-expanded="false" value="${PROJECT_ROOT}/subtractive.m">
+        <Marker>1606303470762</Marker>
       </file>
     </fileset.entrypoints>
     <fileset.testbench>
-      <file>${PROJECT_ROOT}\generate_cpp_helper.m</file>
+      <file>${PROJECT_ROOT}/generate_cpp_helper.m</file>
     </fileset.testbench>
     <fileset.inputtypes>
-      <file custom-data-expanded="false" value="${PROJECT_ROOT}\additive.m">
+      <file custom-data-expanded="false" value="${PROJECT_ROOT}/additive.m">
         <Inputs fileName="additive.m" functionName="additive">
           <Input Name="n_samples" typeId="0" />
           <Input Name="sample_rate" typeId="1" />
@@ -1133,11 +1132,11 @@
           </idpTable>
         </Inputs>
       </file>
-      <file custom-data-expanded="false" value="${PROJECT_ROOT}\subtractive.m">
+      <file custom-data-expanded="false" value="${PROJECT_ROOT}/subtractive.m">
         <Inputs fileName="subtractive.m" functionName="subtractive">
           <Input Name="n_samples" typeId="0" />
-          <Input Name="window_size" typeId="0" />
           <Input Name="magnitudes" typeId="1" />
+          <Input Name="color" typeId="0" />
           <idpTable>
             <type typeId="0">
               <Class>double</Class>
@@ -1162,39 +1161,33 @@
       </file>
     </fileset.inputtypes>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\codegen\lib\DDSPSynth" name="DDSPSynth.lib" optional="false">C:\Users\svkly\OneDrive - Aalborg Universitet\SMC7Proj\matlab-ddsp\codegen\lib\DDSPSynth\DDSPSynth.lib</file>
+      <file location="${PROJECT_ROOT}/codegen/lib/DDSPSynth" name="DDSPSynth.a" optional="false">/Users/Robin/Documents/MATLAB/matlab-ddsp/codegen/lib/DDSPSynth/DDSPSynth.a</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>C:\Program Files\MATLAB\R2020a</root>
+      <root>/Applications/MATLAB_R2020a.app</root>
       <toolboxes>
         <toolbox name="matlabcoder" />
-        <toolbox name="neuralnetwork" />
       </toolboxes>
       <toolbox>
         <matlabcoder>
           <enabled>true</enabled>
         </matlabcoder>
       </toolbox>
-      <toolbox>
-        <neuralnetwork>
-          <enabled>true</enabled>
-        </neuralnetwork>
-      </toolbox>
     </matlab>
     <platform>
-      <unix>false</unix>
-      <mac>false</mac>
-      <windows>true</windows>
+      <unix>true</unix>
+      <mac>true</mac>
+      <windows>false</windows>
       <win2k>false</win2k>
       <winxp>false</winxp>
       <vista>false</vista>
       <linux>false</linux>
       <solaris>false</solaris>
-      <osver>10.0</osver>
+      <osver>10.15.6</osver>
       <os32>false</os32>
       <os64>true</os64>
-      <arch>win64</arch>
+      <arch>maci64</arch>
       <matlab>true</matlab>
     </platform>
   </configuration>

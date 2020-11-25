@@ -15,10 +15,12 @@ amplitudes = ones(4096,1);
 harmonic_distribution = [1; ones(49,1)];
 f0 = ones(4096,1)*500;
 prev_phases = zeros(50,1);
+shift = 0;
+stretch = 0;
 
-[b, p] = additive(n_samples, sample_rate, amplitudes, harmonic_distribution, f0, prev_phases);
+[b, p] = additive(n_samples, sample_rate, amplitudes, harmonic_distribution, f0, prev_phases, shift, stretch);
 
-sound(a,sample_rate);
+sound(b,sample_rate);
 
 tiledlayout(1,3);
 nexttile
