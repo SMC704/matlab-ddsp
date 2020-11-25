@@ -20,7 +20,7 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harm
     f0 = f0(1:n_samples,1);
     
     % Incorporate shift parameter
-    if (shift > 0)
+    %if (shift > 0)
         f0 = f0 + (f0 * 1/12 * shift);
     elseif (shift < 0)
         f0 = f0 + (f0 * 1/12 * shift * 0.5);            

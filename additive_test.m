@@ -40,5 +40,5 @@ xlabel(t,'samples');
 t.TileSpacing = 'none';
 
 % Synthesize audio
-audio = additive(n_samples, sample_rate, amplitudes, harmonic_distribution, f0, prev_phases);
+audio = additive(n_samples, sample_rate, amplitudes, harmonic_distribution, f0, prev_phases, 0, 0);
 soundsc(audio, sample_rate);
