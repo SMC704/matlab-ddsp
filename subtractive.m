@@ -1,4 +1,4 @@
-function [out] = subtractive(n_samples, magnitudes, color)
+function [out, b] = subtractive(n_samples, magnitudes, color, ir_coeffs, recalculate_ir)
     % magnitudes: row = frames, column = freq responses
     % magnitudes should be 65
     
@@ -37,7 +37,13 @@ function [out] = subtractive(n_samples, magnitudes, color)
     
     norm_freq = linspace(0,1,n_freqs-1);
     
-    b = firls(ir_size,norm_freq, magnitudes(1:end-1));
+    b = zeros(1, ir_size+1);
+    
+    if recalculate_ir
+        b(1:ir_size+1) = firls(ir_size,norm_freq, magnitudes(1:end-1));
+    else
+        b(1:ir_size+1) = ir_coeffs(1:ir_size+1);
+    end
     filtered_signal = filter(b, 1, signal);
     out = zeros(4096,1);
 %     out(1:n_samples) = filtered_signal(66:n_samples+65);

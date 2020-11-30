@@ -1,18 +1,18 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2018b">
-  <configuration build-checksum="1031206447" file="/Users/Robin/Documents/MATLAB/matlab-ddsp/DDSPSynth.prj" location="/Users/Robin/Documents/MATLAB/matlab-ddsp" name="DDSPSynth" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="2252856327" file="C:\Users\david\Documents\Sound and Music Computing\DDSP\matlab\DDSPSynth.prj" location="C:\Users\david\Documents\Sound and Music Computing\DDSP\matlab" name="DDSPSynth" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
-      <param.BuiltInstrumentedMex>false</param.BuiltInstrumentedMex>
+      <param.BuiltInstrumentedMex />
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
       <param.WorkingFolder>option.WorkingFolder.Project</param.WorkingFolder>
       <param.SpecifiedWorkingFolder />
       <param.BuildFolder>option.BuildFolder.Project</param.BuildFolder>
       <param.SpecifiedBuildFolder />
       <param.SearchPaths />
-      <param.ResponsivenessChecks>true</param.ResponsivenessChecks>
-      <param.ExtrinsicCalls>true</param.ExtrinsicCalls>
-      <param.IntegrityChecks>true</param.IntegrityChecks>
+      <param.ResponsivenessChecks />
+      <param.ExtrinsicCalls />
+      <param.IntegrityChecks />
       <param.SaturateOnIntegerOverflow>true</param.SaturateOnIntegerOverflow>
-      <param.GlobalDataSyncMethod>option.GlobalDataSyncMethod.SyncAlways</param.GlobalDataSyncMethod>
+      <param.GlobalDataSyncMethod />
       <param.EnableVariableSizing>true</param.EnableVariableSizing>
       <param.DynamicMemoryAllocation>option.DynamicMemoryAllocation.Threshold</param.DynamicMemoryAllocation>
       <param.DynamicMemoryAllocationThreshold>65536</param.DynamicMemoryAllocationThreshold>
@@ -26,7 +26,7 @@
       <param.GenerateComments>true</param.GenerateComments>
       <param.MATLABSourceComments>false</param.MATLABSourceComments>
       <param.ReservedNameArray />
-      <param.EnableDebugging>false</param.EnableDebugging>
+      <param.EnableDebugging />
       <param.ReportPotentialDifferences>false</param.ReportPotentialDifferences>
       <param.GenerateReport>true</param.GenerateReport>
       <param.LaunchReport>false</param.LaunchReport>
@@ -45,7 +45,7 @@
       <param.CustomSource />
       <param.CustomLibrary />
       <param.PostCodeGenCommand />
-      <param.mex.GenCodeOnly>false</param.mex.GenCodeOnly>
+      <param.mex.GenCodeOnly />
       <param.ConstantFoldingTimeout>40000</param.ConstantFoldingTimeout>
       <param.CompileTimeRecursionLimit>50</param.CompileTimeRecursionLimit>
       <param.EnableRuntimeRecursion>true</param.EnableRuntimeRecursion>
@@ -53,7 +53,7 @@
       <param.InlineUserFunctions>option.InlineUserFunctions.Speed</param.InlineUserFunctions>
       <param.InlineMWFunctions>option.InlineMWFunctions.Speed</param.InlineMWFunctions>
       <param.InlineMWFunctionsInUserFunctions>option.InlineMWFunctionsInUserFunctions.Speed</param.InlineMWFunctionsInUserFunctions>
-      <param.EchoExpressions>true</param.EchoExpressions>
+      <param.EchoExpressions />
       <param.InlineThreshold>10</param.InlineThreshold>
       <param.InlineThresholdMax>200</param.InlineThresholdMax>
       <param.InlineStackLimit>4000</param.InlineStackLimit>
@@ -61,11 +61,11 @@
       <param.MemcpyThreshold>64</param.MemcpyThreshold>
       <param.EnableOpenMP>true</param.EnableOpenMP>
       <param.InitFltsAndDblsToZero>true</param.InitFltsAndDblsToZero>
-      <param.ConstantInputs>option.ConstantInputs.CheckValues</param.ConstantInputs>
+      <param.ConstantInputs />
       <param.EnableCRICodeCoverage>true</param.EnableCRICodeCoverage>
       <param.EnableJIT>false</param.EnableJIT>
-      <param.EnableJITSilentBailOut>false</param.EnableJITSilentBailOut>
-      <param.CheckForIssuesJIT>true</param.CheckForIssuesJIT>
+      <param.EnableJITSilentBailOut />
+      <param.CheckForIssuesJIT />
       <unset>
         <param.BuiltInstrumentedMex />
         <param.RanInstrumentedMex />
@@ -240,7 +240,7 @@
       <param.HardwareSizeChar.Production>8</param.HardwareSizeChar.Production>
       <param.HardwareSizeShort.Production>16</param.HardwareSizeShort.Production>
       <param.HardwareSizeInt.Production>32</param.HardwareSizeInt.Production>
-      <param.HardwareSizeLong.Production>64</param.HardwareSizeLong.Production>
+      <param.HardwareSizeLong.Production>32</param.HardwareSizeLong.Production>
       <param.HardwareSizeLongLong.Production>64</param.HardwareSizeLongLong.Production>
       <param.HardwareSizeFloat.Production>32</param.HardwareSizeFloat.Production>
       <param.HardwareSizeDouble.Production>64</param.HardwareSizeDouble.Production>
@@ -261,7 +261,7 @@
       <param.HardwareSizeChar.Target>8</param.HardwareSizeChar.Target>
       <param.HardwareSizeShort.Target>16</param.HardwareSizeShort.Target>
       <param.HardwareSizeInt.Target>32</param.HardwareSizeInt.Target>
-      <param.HardwareSizeLong.Target>64</param.HardwareSizeLong.Target>
+      <param.HardwareSizeLong.Target>32</param.HardwareSizeLong.Target>
       <param.HardwareSizeLongLong.Target>64</param.HardwareSizeLongLong.Target>
       <param.HardwareSizeFloat.Target>32</param.HardwareSizeFloat.Target>
       <param.HardwareSizeDouble.Target>64</param.HardwareSizeDouble.Target>
@@ -423,6 +423,7 @@
         <param.HardwareSizeChar.Production />
         <param.HardwareSizeShort.Production />
         <param.HardwareSizeInt.Production />
+        <param.HardwareSizeLong.Production />
         <param.HardwareSizeLongLong.Production />
         <param.HardwareSizeFloat.Production />
         <param.HardwareSizeDouble.Production />
@@ -436,6 +437,7 @@
         <param.HardwareSizeChar.Target />
         <param.HardwareSizeShort.Target />
         <param.HardwareSizeInt.Target />
+        <param.HardwareSizeLong.Target />
         <param.HardwareSizeLongLong.Target />
         <param.HardwareSizeFloat.Target />
         <param.HardwareSizeDouble.Target />
@@ -843,11 +845,11 @@
     </param.TestSnippets>
     <param.ExternalFcnMajority>column</param.ExternalFcnMajority>
     <param.UseGlobals>option.UseGlobals.No</param.UseGlobals>
-    <param.outputfile>${PROJECT_ROOT}/codegen/lib/DDSPSynth/DDSPSynth.a</param.outputfile>
+    <param.outputfile>${PROJECT_ROOT}\codegen\lib\DDSPSynth\DDSPSynth.lib</param.outputfile>
     <param.version>R2012a</param.version>
     <param.HasECoderFeatures>false</param.HasECoderFeatures>
     <param.HasGpuCoder>false</param.HasGpuCoder>
-    <var.HasNeuralNetworkToolbox>false</var.HasNeuralNetworkToolbox>
+    <var.HasNeuralNetworkToolbox>true</var.HasNeuralNetworkToolbox>
     <param.mex.mainhtml />
     <param.grt.mainhtml />
     <param.CallGeneratedCodeFromTest>true</param.CallGeneratedCodeFromTest>
@@ -858,22 +860,22 @@
     <param.AutoInferUnboundedSizeThreshold>2048</param.AutoInferUnboundedSizeThreshold>
     <param.EnableFixedPointStep>false</param.EnableFixedPointStep>
     <param.EnableScreener>true</param.EnableScreener>
-    <param.AnnotationChecksum>3173922271</param.AnnotationChecksum>
+    <param.AnnotationChecksum>3150794858</param.AnnotationChecksum>
     <var.LegacyTarget />
     <var.MirrorOnOpen>false</var.MirrorOnOpen>
     <param.FixedPointEnabled>false</param.FixedPointEnabled>
     <var.redirectedInputTypeData />
     <var.DismissScreener>true</var.DismissScreener>
     <param.unifiedParamStorage />
-    <var.gc.lastOutputRoot>codegen/lib/DDSPSynth</var.gc.lastOutputRoot>
+    <var.gc.lastOutputRoot>codegen\lib\DDSPSynth</var.gc.lastOutputRoot>
     <var.gc.lastOutputType>C_CODE</var.gc.lastOutputType>
-    <var.gc.preBuildChecksum>883879669</var.gc.preBuildChecksum>
+    <var.gc.preBuildChecksum>1496317641</var.gc.preBuildChecksum>
     <var.cfi.lastOutputRoot>codegen/mex/additive_mex</var.cfi.lastOutputRoot>
     <var.cfi.preBuildChecksum>2756388583</var.cfi.preBuildChecksum>
     <var.lastCfiTestSnippet>generate_cpp_helper</var.lastCfiTestSnippet>
     <var.outdatedOnRestore>false</var.outdatedOnRestore>
-    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;/Users/Robin/Documents/MATLAB/matlab-ddsp/additive.m&lt;/file&gt;&lt;file&gt;/Users/Robin/Documents/MATLAB/matlab-ddsp/subtractive.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;4152970615&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
-    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;/Users/Robin/Documents/MATLAB/matlab-ddsp/additive.m&lt;/file&gt;&lt;file&gt;/Users/Robin/Documents/MATLAB/matlab-ddsp/subtractive.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
+    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;C:\Users\david\Documents\Sound and Music Computing\DDSP\matlab\additive.m&lt;/file&gt;&lt;file&gt;C:\Users\david\Documents\Sound and Music Computing\DDSP\matlab\subtractive.m&lt;/file&gt;&lt;file&gt;C:\Users\david\Documents\Sound and Music Computing\Musical Perception and Cognition\MIRtoolbox1.7.2\MIRToolbox\@miraudio\set.m&lt;/file&gt;&lt;file&gt;C:\Users\david\Documents\Sound and Music Computing\Musical Perception and Cognition\MIRtoolbox1.7.2\MIRToolbox\@mirautocor\get.m&lt;/file&gt;&lt;file&gt;C:\Users\david\Documents\Sound and Music Computing\Musical Perception and Cognition\MIRtoolbox1.7.2\MIRToolbox\@mirdata\log.m&lt;/file&gt;&lt;file&gt;C:\Users\david\Documents\Sound and Music Computing\Musical Perception and Cognition\MIRtoolbox1.7.2\MIRToolbox\@mirdata\mirdata.m&lt;/file&gt;&lt;file&gt;C:\Users\david\Documents\Sound and Music Computing\Musical Perception and Cognition\MIRtoolbox1.7.2\MIRToolbox\@mirtemporal\mirtemporal.m&lt;/file&gt;&lt;file&gt;C:\Users\david\Documents\Sound and Music Computing\Musical Perception and Cognition\MIRtoolbox1.7.2\MIRToolbox\center.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;1743555915&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
+    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;C:\Users\david\Documents\Sound and Music Computing\DDSP\matlab\additive.m&lt;/file&gt;&lt;file&gt;C:\Users\david\Documents\Sound and Music Computing\DDSP\matlab\subtractive.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
     <param.forceMexBuild>false</param.forceMexBuild>
     <param.NoDefaultJIT>false</param.NoDefaultJIT>
     <param.configImportActive>false</param.configImportActive>
@@ -885,7 +887,7 @@
     <param.mex.outputfile>additive_mex</param.mex.outputfile>
     <param.grt.outputfile>DDSPSynth</param.grt.outputfile>
     <param.artifact>option.target.artifact.lib</param.artifact>
-    <param.outputfile>${PROJECT_ROOT}/codegen/lib/DDSPSynth/DDSPSynth.a</param.outputfile>
+    <param.outputfile>${PROJECT_ROOT}\codegen\lib\DDSPSynth\DDSPSynth.lib</param.outputfile>
     <param.CppNamespace />
     <param.gpu.Enabled>false</param.gpu.Enabled>
     <param.gpu.KernelNamePrefix />
@@ -907,8 +909,8 @@
     <var.isDeepLearningForMatlabCoderEnabled>true</var.isDeepLearningForMatlabCoderEnabled>
     <param.deeplearning.TargetLib>option.deeplearning.targetlibrary.none</param.deeplearning.TargetLib>
     <var.cfiTargetLibSuppression>false</var.cfiTargetLibSuppression>
-    <var.hasMatlabDeepLearningSupportPackage>false</var.hasMatlabDeepLearningSupportPackage>
-    <var.hasGpuDeepLearningSupportPackage>false</var.hasGpuDeepLearningSupportPackage>
+    <var.hasMatlabDeepLearningSupportPackage>true</var.hasMatlabDeepLearningSupportPackage>
+    <var.hasGpuDeepLearningSupportPackage>true</var.hasGpuDeepLearningSupportPackage>
     <param.tensorrt.DataType>option.tensorrt.datatype.fp32</param.tensorrt.DataType>
     <param.tensorrt.DataPath />
     <param.tensorrt.NumCalibrationBatches>1</param.tensorrt.NumCalibrationBatches>
@@ -1018,6 +1020,8 @@
       <var.isDeepLearningForMatlabCoderEnabled />
       <param.deeplearning.TargetLib />
       <var.cfiTargetLibSuppression />
+      <var.hasMatlabDeepLearningSupportPackage />
+      <var.hasGpuDeepLearningSupportPackage />
       <param.tensorrt.DataType />
       <param.tensorrt.DataPath />
       <param.tensorrt.NumCalibrationBatches />
@@ -1073,18 +1077,18 @@
       <param.FixedPointUseDesignRanges />
     </unset>
     <fileset.entrypoints>
-      <file custom-data-expanded="false" value="${PROJECT_ROOT}/additive.m">
+      <file custom-data-expanded="false" value="${PROJECT_ROOT}\additive.m">
         <Marker>1606310230564</Marker>
       </file>
-      <file custom-data-expanded="false" value="${PROJECT_ROOT}/subtractive.m">
-        <Marker>1606310219007</Marker>
+      <file custom-data-expanded="false" value="${PROJECT_ROOT}\subtractive.m">
+        <Marker>1606745882918</Marker>
       </file>
     </fileset.entrypoints>
     <fileset.testbench>
-      <file>${PROJECT_ROOT}/generate_cpp_helper.m</file>
+      <file>${PROJECT_ROOT}\generate_cpp_helper.m</file>
     </fileset.testbench>
     <fileset.inputtypes>
-      <file custom-data-expanded="false" value="${PROJECT_ROOT}/additive.m">
+      <file custom-data-expanded="false" value="${PROJECT_ROOT}\additive.m">
         <Inputs fileName="additive.m" functionName="additive">
           <Input Name="n_samples" typeId="0" />
           <Input Name="sample_rate" typeId="1" />
@@ -1142,11 +1146,13 @@
           </idpTable>
         </Inputs>
       </file>
-      <file custom-data-expanded="false" value="${PROJECT_ROOT}/subtractive.m">
+      <file custom-data-expanded="false" value="${PROJECT_ROOT}\subtractive.m">
         <Inputs fileName="subtractive.m" functionName="subtractive">
           <Input Name="n_samples" typeId="0" />
           <Input Name="magnitudes" typeId="1" />
           <Input Name="color" typeId="0" />
+          <Input Name="ir_coeffs" typeId="2" />
+          <Input Name="recalculate_ir" typeId="3" />
           <idpTable>
             <type typeId="0">
               <Class>double</Class>
@@ -1166,38 +1172,61 @@
               <Complex>false</Complex>
               <Sparse>false</Sparse>
             </type>
+            <type typeId="2">
+              <Class>double</Class>
+              <Size>1 x 129</Size>
+              <Value />
+              <InitialValue />
+              <UserDefined>true</UserDefined>
+              <Complex>false</Complex>
+              <Sparse>false</Sparse>
+            </type>
+            <type typeId="3">
+              <Class>logical</Class>
+              <Size>1 x 1</Size>
+              <Value />
+              <InitialValue />
+              <UserDefined>true</UserDefined>
+              <Sparse>false</Sparse>
+            </type>
           </idpTable>
         </Inputs>
       </file>
     </fileset.inputtypes>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}/codegen/lib/DDSPSynth" name="DDSPSynth.a" optional="false">/Users/Robin/Documents/MATLAB/matlab-ddsp/codegen/lib/DDSPSynth/DDSPSynth.a</file>
+      <file location="${PROJECT_ROOT}\codegen\lib\DDSPSynth" name="DDSPSynth.lib" optional="false">C:\Users\david\Documents\Sound and Music Computing\DDSP\matlab\codegen\lib\DDSPSynth\DDSPSynth.lib</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>/Applications/MATLAB_R2020a.app</root>
+      <root>C:\Program Files\MATLAB\R2020a</root>
       <toolboxes>
         <toolbox name="matlabcoder" />
+        <toolbox name="neuralnetwork" />
       </toolboxes>
       <toolbox>
         <matlabcoder>
           <enabled>true</enabled>
         </matlabcoder>
       </toolbox>
+      <toolbox>
+        <neuralnetwork>
+          <enabled>true</enabled>
+        </neuralnetwork>
+      </toolbox>
     </matlab>
     <platform>
-      <unix>true</unix>
-      <mac>true</mac>
-      <windows>false</windows>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
       <win2k>false</win2k>
       <winxp>false</winxp>
       <vista>false</vista>
       <linux>false</linux>
       <solaris>false</solaris>
-      <osver>10.15.6</osver>
+      <osver>10.0</osver>
       <os32>false</os32>
       <os64>true</os64>
-      <arch>maci64</arch>
+      <arch>win64</arch>
       <matlab>true</matlab>
     </platform>
   </configuration>
