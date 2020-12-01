@@ -28,7 +28,6 @@ function [out, b] = subtractive(n_samples, magnitudes, color, ir_coeffs, recalcu
     if (color < 0)
         signal = signal + abs(color)*brown_noise;
     end
-%     signal = rand(n_samples, 1) * 2 - 1;
     
     signal = signal(1:n_samples+65);
 
@@ -47,7 +46,7 @@ function [out, b] = subtractive(n_samples, magnitudes, color, ir_coeffs, recalcu
     filtered_signal = filter(b, 1, signal);
     out = zeros(4096,1);
 %     out(1:n_samples) = filtered_signal(66:n_samples+65);
-    out(1:n_samples) = filtered_signal(66:n_samples+65);
+    out(1:n_samples) = rescale(filtered_signal(66:n_samples+65),-1,1);
 
 
 end
