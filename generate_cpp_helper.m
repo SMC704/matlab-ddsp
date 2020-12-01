@@ -6,7 +6,7 @@ n_samples = 4096;
 magnitudes = linspace(1,0,65)';
 % signal = rand(n_samples+65, 1) * 2 - 1;
 
-a = subtractive(n_samples, magnitudes, 0);
+[a, coeffs] = subtractive(n_samples, magnitudes, 0, zeros(1, 129), true);
 
 % Additive
 n_samples = int32(4096);
