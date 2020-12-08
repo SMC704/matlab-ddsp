@@ -27,7 +27,7 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, n_ha
     end
     
     % Scale the amplitudes
-    amplitudes = scale_fn(amplitudes);
+%     amplitudes = scale_fn(amplitudes);
     harmonic_distribution = scale_fn(harmonic_distribution);
     
     % Bandlimit the harmonic distribution
