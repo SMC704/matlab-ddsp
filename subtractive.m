@@ -1,14 +1,10 @@
-function out = subtractive(n_samples, magnitudes, color)
+function out = subtractive(n_samples, magnitudes, color, initial_bias)
 % function [out, b] = subtractive(n_samples, magnitudes, color, ir_coeffs, recalculate_ir)
 
 % magnitudes: row = frames, column = freq responses
     % magnitudes should be 65
-    
-%     normalize magnitudes
-%     initial_bias = 1;
-    
-%     optional; colab examplees do not use it
-%     magnitudes = scale_fn(magnitudes + initial_bias);
+
+    magnitudes = scale_fn(magnitudes + initial_bias);
     
     % generate white noise
     white_n = dsp.ColoredNoise(0, 4096, 1);

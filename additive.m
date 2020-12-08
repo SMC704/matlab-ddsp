@@ -13,7 +13,7 @@
 %
 % Sample-wise audio signal
 
-function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harmonic_distribution, f0, prev_phases, shift, stretch)
+function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, n_harmonics, harmonic_distribution, f0, prev_phases, shift, stretch)
     
     % Resize the input
     amplitudes = amplitudes(1:n_samples,1);
@@ -27,11 +27,10 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harm
     end
     
     % Scale the amplitudes
-%     amplitudes = scale_fn(amplitudes);
-%     harmonic_distribution = scale_fn(harmonic_distribution);
+    amplitudes = scale_fn(amplitudes);
+    harmonic_distribution = scale_fn(harmonic_distribution);
     
     % Bandlimit the harmonic distribution
-    n_harmonics = size(harmonic_distribution, 1);
     harmonic_frequencies = get_harmonic_frequencies(f0, n_harmonics, stretch);
     harmonic_distribution = remove_above_nyquist(harmonic_frequencies, harmonic_distribution, sample_rate);
     
@@ -58,7 +57,10 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, harm
        phases(1:end,c) = phases(1:end,c)+prev_phases(c,1); 
     end
     phases = mod(phases, 2*pi);
-    last_phases = phases(end,:);
+    last_phases = zeros(1,60);
+    for p = 1:size(phases,2)
+       last_phases(1,p) = phases(end,p); 
+    end
     
     % Convert to waveforms
     wavs = sin(phases);
