@@ -1,17 +1,15 @@
-function [out, b] = subtractive(n_samples, magnitudes, color, ir_coeffs, recalculate_ir)
-    % magnitudes: row = frames, column = freq responses
+function out = subtractive(n_samples, magnitudes, color, initial_bias)
+% function [out, b] = subtractive(n_samples, magnitudes, color, ir_coeffs, recalculate_ir)
+
+% magnitudes: row = frames, column = freq responses
     % magnitudes should be 65
-    
-%     normalize magnitudes
-    initial_bias = 1;
-    
-%     optional; colab examplees do not use it
+
     magnitudes = scale_fn(magnitudes + initial_bias);
     
     % generate white noise
-    white_n = dsp.ColoredNoise(0, 4161, 1);
-    brown_n = dsp.ColoredNoise(2, 4161, 1);
-    violet_n = dsp.ColoredNoise(-1.99, 4161, 1);
+    white_n = dsp.ColoredNoise(0, 4096, 1);
+    brown_n = dsp.ColoredNoise(2, 4096, 1);
+    violet_n = dsp.ColoredNoise(-1.99, 4096, 1);
 
     white_noise = white_n();
     brown_noise = brown_n();
@@ -29,26 +27,35 @@ function [out, b] = subtractive(n_samples, magnitudes, color, ir_coeffs, recalcu
         signal = signal + abs(color)*brown_noise;
     end
     
-    signal = signal(1:n_samples+65);
+    signal = signal(1:n_samples);
 
-    n_freqs = size(magnitudes, 1);
-    ir_size = 2 * (n_freqs - 1);
+    NFFT = 2 * (n_samples - 1);
+
+    noise_freq = real(fft(signal, NFFT));
+    noise_freq_half = noise_freq(1:end/2+1);
     
-    norm_freq = linspace(0,1,n_freqs-1);
+    mag_rel_bin_size = ceil(double(n_samples)/size(magnitudes,1));
     
-    b = zeros(1, ir_size+1);
+    mag_rescaled = zeros(size(magnitudes,1)*mag_rel_bin_size,1);
     
-    if recalculate_ir
-        b(1:ir_size+1) = firls(ir_size,norm_freq, magnitudes(1:end-1));
-    else
-        b(1:ir_size+1) = ir_coeffs(1:ir_size+1);
+    for m = 1:size(magnitudes,1)
+        for n = 1:mag_rel_bin_size
+           mag_rescaled(n*m,1) = magnitudes(n,1);
+        end
     end
-    filtered_signal = filter(b, 1, signal);
+    
+    mag_rescaled = mag_rescaled(1:n_samples);
+    
+    sub_freq = noise_freq_half .* mag_rescaled;
+
+    sub = real(ifft(sub_freq,n_samples*2));
+    sub = sub(1:end/2);
+    
+    sub = rescale(sub(1:n_samples),-1,1);
+    
     out = zeros(4096,1);
-%     out(1:n_samples) = filtered_signal(66:n_samples+65);
-    out(1:n_samples) = rescale(filtered_signal(66:n_samples+65),-1,1);
-
-
+    out(1:n_samples) = sub;
+    
 end
 
 function y = scale_fn(x)
