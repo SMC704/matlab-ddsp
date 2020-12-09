@@ -65,7 +65,7 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, n_ha
     % Convert to waveforms
     wavs = sin(phases);
     audio = zeros(size(amplitudes));
-    for c = 1:size(harmonic_amplitudes,2)
+    for c = 1:n_harmonics
         audio(1:end) = audio(1:end) + harmonic_amplitudes(1:end,c) .* wavs(1:end,c);
     end
 end
