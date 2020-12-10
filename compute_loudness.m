@@ -1,11 +1,13 @@
 % MATLAB Reimplementation of ddsp.spectral_ops.compute_loudness
-function [loudness_out] = compute_loudness(n_samples, audio, sample_rate)
+function [loudness] = compute_loudness(n_samples, audio, sample_rate)
     x = audio(1:n_samples,1);
     NFFT = 2048;
-    window_length = floor(0.0384615*n_samples);
+    window_length = n_samples;
     window = hann(window_length);
-    s = stft(x, sample_rate, 'Window', window, 'FFTLength', NFFT); 
-    amplitude = abs(s);
+    x_win = x.*window;
+    X = fft(x_win, NFFT);
+%     s = stft(x, sample_rate, 'Window', window, 'FFTLength', NFFT); 
+    amplitude = abs(X);
     amin = 1e-20; 
     power_db = log10(max(amin, amplitude)) * 20;
     frequencies = real(fft(audio, NFFT*2));
@@ -19,8 +21,4 @@ function [loudness_out] = compute_loudness(n_samples, audio, sample_rate)
     LD_RANGE = 120;
     loudness = max(loudness, -LD_RANGE);
     loudness = mean(loudness,1);
-    loudness_out = ones(100,1) * -LD_RANGE;
-    for i = 1:numel(loudness)
-       loudness_out(i) = loudness(i); 
-    end
 end
