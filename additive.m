@@ -27,7 +27,7 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, n_ha
     end
     
     % Scale the amplitudes
-%     amplitudes = scale_fn(amplitudes);
+    amplitudes = scale_fn(amplitudes);
     harmonic_distribution = scale_fn(harmonic_distribution);
     
     % Bandlimit the harmonic distribution
@@ -35,10 +35,10 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, n_ha
     harmonic_distribution = remove_above_nyquist(harmonic_frequencies, harmonic_distribution, sample_rate);
     
     % Normalize the harmonic distribution
-%     harm_sum = sum(harmonic_distribution,2);
-%     for c = 1:size(harmonic_distribution,2)
-%         harmonic_distribution(1:end,c) = harmonic_distribution(1:end,c) ./ harm_sum;
-%     end
+    harm_sum = sum(harmonic_distribution,2);
+    for c = 1:size(harmonic_distribution,2)
+        harmonic_distribution(1:end,c) = harmonic_distribution(1:end,c) ./ harm_sum;
+    end
     
     % Create harmonic amplitudes
     harmonic_amplitudes = zeros(size(amplitudes,1),size(harmonic_distribution,1));
@@ -56,15 +56,21 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, n_ha
     for c = 1:size(phases,2)
        phases(1:end,c) = phases(1:end,c)+prev_phases(c,1); 
     end
+    % For now: check if f0 == 0hz and reset phase
+    for i = 1:size(phases,1)
+       if(f0(i) == 0)
+          phases(i,1:end) = 0; 
+       end
+    end
     phases = mod(phases, 2*pi);
-    last_phases = zeros(1,60);
+    last_phases = zeros(60,1);
     for p = 1:size(phases,2)
-       last_phases(1,p) = phases(end,p); 
+       last_phases(p) = phases(end,p); 
     end
     
     % Convert to waveforms
     wavs = sin(phases);
-    audio = zeros(size(amplitudes));
+    audio = zeros(4096,1);
     for c = 1:n_harmonics
         audio(1:end) = audio(1:end) + harmonic_amplitudes(1:end,c) .* wavs(1:end,c);
     end

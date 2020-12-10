@@ -28,11 +28,13 @@ function out = subtractive(n_samples, magnitudes, color, initial_bias)
     end
     
     signal = signal(1:n_samples);
+    signal = rescale(signal,-1,1);
 
-    NFFT = 2 * (n_samples - 1);
+    NFFT = 2^(nextpow2(n_samples));
 
-    noise_freq = real(fft(signal, NFFT));
-    noise_freq_half = noise_freq(1:end/2+1);
+    X = fft(signal, NFFT)/n_samples;
+%     noise_freq = real(fft(signal, NFFT))/NFFT;
+%     noise_freq_half = noise_freq(1:end/2+1);
     
     mag_rel_bin_size = ceil(double(n_samples)/size(magnitudes,1));
     
@@ -44,14 +46,11 @@ function out = subtractive(n_samples, magnitudes, color, initial_bias)
         end
     end
     
-    mag_rescaled = mag_rescaled(1:n_samples);
+    H = mag_rescaled(1:n_samples);
     
-    sub_freq = noise_freq_half .* mag_rescaled;
+    X_conv = X .* H;
 
-    sub = real(ifft(sub_freq,n_samples*2));
-    sub = sub(1:end/2);
-    
-    sub = rescale(sub(1:n_samples),-1,1);
+    sub = real(ifft(X_conv,n_samples));
     
     out = zeros(4096,1);
     out(1:n_samples) = sub;
@@ -65,4 +64,5 @@ function y = scale_fn(x)
     threshold = 1e-7;
     
     y = max_value * (1./(1+exp(-x))).^log(exponent) + threshold;
+
 end

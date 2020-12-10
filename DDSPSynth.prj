@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2018b">
-  <configuration build-checksum="3919452081" file="D:\Projects\SMC\ddsp\matlab-ddsp\DDSPSynth.prj" location="D:\Projects\SMC\ddsp\matlab-ddsp" name="DDSPSynth" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="988246999" file="D:\Projects\SMC\ddsp\matlab-ddsp\DDSPSynth.prj" location="D:\Projects\SMC\ddsp\matlab-ddsp" name="DDSPSynth" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
       <param.BuiltInstrumentedMex>false</param.BuiltInstrumentedMex>
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
@@ -846,7 +846,7 @@
       </unset>
     </profile>
     <param.objective>option.objective.c</param.objective>
-    <param.WorkflowStep>generateCode</param.WorkflowStep>
+    <param.WorkflowStep>workflowSummary</param.WorkflowStep>
     <param.TestSnippets>
       <item>generate_cpp_helper</item>
       <item>subtractive(1024, 1024, zeros(1,1024))</item>
@@ -870,7 +870,7 @@
     <param.AutoInferUnboundedSizeThreshold>2048</param.AutoInferUnboundedSizeThreshold>
     <param.EnableFixedPointStep>false</param.EnableFixedPointStep>
     <param.EnableScreener>true</param.EnableScreener>
-    <param.AnnotationChecksum>1336029699</param.AnnotationChecksum>
+    <param.AnnotationChecksum>1499615139</param.AnnotationChecksum>
     <var.LegacyTarget />
     <var.MirrorOnOpen>false</var.MirrorOnOpen>
     <param.FixedPointEnabled>false</param.FixedPointEnabled>
@@ -879,12 +879,12 @@
     <param.unifiedParamStorage />
     <var.gc.lastOutputRoot>codegen\lib\DDSPSynth</var.gc.lastOutputRoot>
     <var.gc.lastOutputType>C_CODE</var.gc.lastOutputType>
-    <var.gc.preBuildChecksum>3919452081</var.gc.preBuildChecksum>
+    <var.gc.preBuildChecksum>2902681719</var.gc.preBuildChecksum>
     <var.cfi.lastOutputRoot>codegen\mex\additive_mex</var.cfi.lastOutputRoot>
-    <var.cfi.preBuildChecksum>352562654</var.cfi.preBuildChecksum>
+    <var.cfi.preBuildChecksum>3505779569</var.cfi.preBuildChecksum>
     <var.lastCfiTestSnippet>generate_cpp_helper</var.lastCfiTestSnippet>
     <var.outdatedOnRestore>false</var.outdatedOnRestore>
-    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\additive.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\compute_loudness.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\getPitch.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\scale_f0.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\subtractive.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;4197597983&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
+    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\additive.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\compute_loudness.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\getPitch.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\scale_f0.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\subtractive.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;1420007051&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
     <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\additive.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\compute_loudness.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\getPitch.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\scale_f0.m&lt;/file&gt;&lt;file&gt;D:\Projects\SMC\ddsp\matlab-ddsp\subtractive.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
     <param.forceMexBuild>false</param.forceMexBuild>
     <param.NoDefaultJIT>false</param.NoDefaultJIT>
@@ -1098,7 +1098,7 @@
         <Marker>1607520717272</Marker>
       </file>
       <file custom-data-expanded="false" value="${PROJECT_ROOT}\getPitch.m">
-        <Marker>1607520730294</Marker>
+        <Marker>1607529180110</Marker>
       </file>
       <file custom-data-expanded="false" value="${PROJECT_ROOT}\scale_f0.m">
         <Marker>1607521010497</Marker>
@@ -1190,7 +1190,7 @@
         </Inputs>
       </file>
       <file custom-data-expanded="false" value="${PROJECT_ROOT}\getPitch.m">
-        <Inputs fileName="getPitch.m" functionName="getPitch2">
+        <Inputs fileName="getPitch.m" functionName="getPitch">
           <Input Name="n_samples" typeId="0" />
           <Input Name="input" typeId="1" />
           <Input Name="fs" typeId="0" />
