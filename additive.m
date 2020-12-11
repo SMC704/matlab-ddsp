@@ -34,11 +34,11 @@ function [audio,last_phases] = additive(n_samples, sample_rate, amplitudes, n_ha
     harmonic_frequencies = get_harmonic_frequencies(f0, n_harmonics, stretch);
     harmonic_distribution = remove_above_nyquist(harmonic_frequencies, harmonic_distribution, sample_rate);
     
-    % Normalize the harmonic distribution
-    harm_sum = sum(harmonic_distribution,2);
-    for c = 1:size(harmonic_distribution,2)
-        harmonic_distribution(1:end,c) = harmonic_distribution(1:end,c) ./ harm_sum;
-    end
+%     % Normalize the harmonic distribution
+%     harm_sum = sum(harmonic_distribution,2);
+%     for c = 1:size(harmonic_distribution,2)
+%         harmonic_distribution(1:end,c) = harmonic_distribution(1:end,c) ./ harm_sum;
+%     end
     
     % Create harmonic amplitudes
     harmonic_amplitudes = zeros(size(amplitudes,1),size(harmonic_distribution,1));

@@ -27,7 +27,8 @@ initial_bias = -5;
 soundsc(a,44100);
 
 % Additive
-amplitudes = rand(4096,1)*-4 -1;
+% amplitudes = rand(4096,1)*-4 -1;
+amplitudes = ones(4096,1)*-2.27;
 n_harmonics = 50;
 harmonic_distribution = 6 - rand(60,1)*12;
 f0 = ones(4096,1)*440;
