@@ -31,22 +31,18 @@ function out = subtractive(n_samples, magnitudes, color, initial_bias)
     signal = rescale(signal,-1,1);
 
     NFFT = 2^(nextpow2(n_samples));
+    
+    mags_complex = complex(magnitudes, zeros(size(magnitudes)));
+    h = ifft(mags_complex);
+    window_size = size(magnitudes,1);
+    win = hann(window_size);
+    win = fftshift(win);
 
-    X = fft(signal, NFFT)/n_samples;
-%     noise_freq = real(fft(signal, NFFT))/NFFT;
-%     noise_freq_half = noise_freq(1:end/2+1);
+    h_win = real(h).*win;
+    h_win = fftshift(h_win);
+    H = fft(h_win,NFFT);
     
-    mag_rel_bin_size = ceil(double(n_samples)/size(magnitudes,1));
-    
-    mag_rescaled = zeros(size(magnitudes,1)*mag_rel_bin_size,1);
-    
-    for m = 1:size(magnitudes,1)
-        for n = 1:mag_rel_bin_size
-           mag_rescaled(n*m,1) = magnitudes(n,1);
-        end
-    end
-    
-    H = mag_rescaled(1:n_samples);
+    X = fft(signal, NFFT);
     
     X_conv = X .* H;
 

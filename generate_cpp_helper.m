@@ -18,13 +18,15 @@ f0_out = scale_f0(f0_midi,false);
 ld = compute_loudness(n_samples, a, sample_rate);
 amplitude = 10.^(ld / 20);
 
-magnitudes = linspace(0.003,0,65)';
+% magnitudes = linspace(1,0,65)';
+magnitudes = rand(65, 1)*2 - 1;
 
 % [a, coeffs] = subtractive(n_samples, magnitudes, 0, zeros(1, 129), true);
 color = 0;
 initial_bias = -5;
 [a] = subtractive(n_samples, magnitudes, color, initial_bias);
-soundsc(a,44100);
+sound(a,44100);
+plot(a)
 
 % Additive
 % amplitudes = rand(4096,1)*-4 -1;
@@ -44,19 +46,19 @@ f0 = zeros(4096,1);
 % write_pointer = int32(0);
 % [audio_out, buffer, write_pointer, phase_out] = chorus(n_samples, sample_rate, b, buffer, write_pointer, single(10), single(10), single(0));
 
-soundsc(b1,sample_rate);
-soundsc(b2,sample_rate);
-
-tiledlayout(2,2);
-nexttile
-plot(ld)
-title("Loudness")
-nexttile
-plot(f0_midi*127)
-title("f0 midi")
-nexttile
-plot(b1)
-title("Additive 440hz")
-nexttile
-plot(b2)
-title("Additive 0hz")
+% sound(b1,sample_rate);
+% sound(b2,sample_rate);
+% 
+% tiledlayout(2,2);
+% nexttile
+% plot(ld)
+% title("Loudness")
+% nexttile
+% plot(f0_midi*127)
+% title("f0 midi")
+% nexttile
+% plot(b1)
+% title("Additive 440hz")
+% nexttile
+% plot(b2)
+% title("Additive 0hz")
